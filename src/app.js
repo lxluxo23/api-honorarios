@@ -16,14 +16,14 @@ const morganMiddleware = morgan(function(tokens, req, res) {
 });
 const app = express();
 
-
 //configuraciones del servidor
 
 app.set("port", 3000);
 
-
 // middlewares
 
 app.use(morganMiddleware); //morgan para ver las solicitudes
+
+//rutas
 
 export default app;
