@@ -19,7 +19,7 @@ module.exports = function({
 
 
     //ruta padre
-    router.use("/", apiRoute);
+    router.use("/api", apiRoute);
 
     return router;
 

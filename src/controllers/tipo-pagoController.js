@@ -1,10 +1,6 @@
 class TipoPagoController {
-
     async Inicio(req, res) {
-
-        console.log("estoy aki");
+        return res.status(200).send({ success: true, data: "oli" });
     };
-
 }
-
 module.exports = TipoPagoController;
