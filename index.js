@@ -38,7 +38,7 @@ if (cluster.isMaster) {
 
     console.log(clc.greenBright.bold("Aplicacion corriendo en el puerto ", config.PORT));
 
-    for (var i = 0; i < 2; i++) {
+    for (var i = 0; i < nucleos; i++) {
         cluster.fork();
     }
 
