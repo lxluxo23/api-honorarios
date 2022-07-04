@@ -1,13 +1,25 @@
-class TipoPagoService{
+class TipoPagoService {
 
-
-    async ObtenerTodos(){
-
-        return {
-            id:1,
-            nombre:"debito"
-        }
+    constructor({ db }) {
+        this.db = db;
     }
 
+
+    async ObtenerTodos() {
+
+        return this.db.tipopago.findAll({
+            raw: true,
+            nest: true,
+        });
+    }
+    async Crear(entity) {
+
+        console.log(entity);
+        return await this.db.tipopago.create(entity);
+
+    }
 }
-module.exports =TipoPagoService
+
+module.exports = TipoPagoService
+
+

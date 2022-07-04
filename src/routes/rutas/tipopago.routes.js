@@ -3,7 +3,7 @@ const { Router } = require("express");
 module.exports = function({ TipoPagoController }) {
     const router = Router();
 
-    router.get("/", TipoPagoController.Inicio.bind(TipoPagoController));
-
+    router.get("/", TipoPagoController.TraerTodos.bind(TipoPagoController));
+    router.post("/", TipoPagoController.Crear.bind(TipoPagoController));
     return router;
 };
