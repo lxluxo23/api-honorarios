@@ -11,7 +11,7 @@ var fs = require('fs')
 const path = require('path');
 const clc = require('cli-color');
 const figlet = require('figlet');
-
+const db = container.resolve("db");
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
     //intento cluster 
 
@@ -38,6 +38,23 @@ if (cluster.isMaster) {
 
     console.log(clc.greenBright.bold("Aplicacion corriendo en el puerto ", config.PORT));
 
+    db.sequelize.sync({ alter: true, force: false, logging: false })
+    .then(() => {
+        console.log(clc.greenBright(figlet.textSync('Tablas sincronizadas', {
+            horizontalLayout: 'default',
+            verticalLayout: 'default',
+            width: 80,
+            whitespaceBreak: true
+        })));
+    })
+    .catch((err) => {
+        console.error(clc.bold.redBright("ERROR AL CONECTAR A LA BASE DE DATOS"));
+        console.error((clc.bold.red(err)));
+
+    });
+
+
+    
     for (var i = 0; i < nucleos; i++) {
         cluster.fork();
     }
@@ -56,6 +73,6 @@ if (cluster.isMaster) {
     app.use(morganMiddleware);
     app.use(morgan('combined'));
     app.use(Routes)
-    app.listen(3000, () => {})
+    app.listen(config.PORT, () => {})
 
 }

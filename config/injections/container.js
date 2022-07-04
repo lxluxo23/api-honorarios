@@ -7,13 +7,14 @@ const Routes = require("../../src/routes/");
 
 //db
 
-
+const db = require("../../src/models");
 let container = createContainer();
 
 container
     .register({
         router: asFunction(Routes).singleton(),
-        config: asValue(config)
+        config: asValue(config),
+        db: asValue(db)
     });
 
 container = require('./contexto/TipoPago.injection')(container);
