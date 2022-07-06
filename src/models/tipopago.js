@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull:false,
       }
     },
+    {
+      tableName:"tipopago",
+      timestamps: true
+    }
   );
 
   return tipopago;

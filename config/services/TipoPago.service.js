@@ -3,8 +3,6 @@ class TipoPagoService {
     constructor({ db }) {
         this.db = db;
     }
-
-
     async ObtenerTodos() {
 
         return this.db.tipopago.findAll({

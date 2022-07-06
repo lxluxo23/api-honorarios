@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const conceptos = sequelize.define(
-    "conceptos",
+  const clientes = sequelize.define(
+    "clientes",
     {
       id: {
         type: DataTypes.INTEGER,
@@ -16,15 +16,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      createdAt: {
-        type: DataTypes.DATE
-      },
-      updatedAt: {
-        type: DataTypes.DATE
-      }
+      
     },
+    {
+      tableName:"clientes",
+      timestamps: true
+    }
   );
 
-  return conceptos;
+  return clientes;
 };
 

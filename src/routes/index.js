@@ -16,7 +16,7 @@ module.exports = function({
         .use(compression());
 
     apiRoute.use("/tipopago", TipoPagoRoute);
-
+    
 
     //ruta padre
     router.use("/api", apiRoute);
