@@ -1,7 +1,7 @@
-class TipoPagoController {
+class ClientesController {
 
-    constructor({ TipoPagoService }) {
-        this.servicio = TipoPagoService
+    constructor({ ClienteService }) {
+        this.servicio = ClienteService
     }
     async TraerTodos(req, res) {
 
@@ -34,4 +34,4 @@ class TipoPagoController {
         }
     }
 }
-module.exports = TipoPagoController; 
+module.exports = ClientesController; 

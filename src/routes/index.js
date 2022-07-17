@@ -5,6 +5,9 @@ const compression = require('compression');
 
 module.exports = function({
     TipoPagoRoute,
+    ClientesRoute,
+    ConceptosRoute
+
 }) {
 
     const router = Router();
@@ -16,6 +19,10 @@ module.exports = function({
         .use(compression());
 
     apiRoute.use("/tipopago", TipoPagoRoute);
+    apiRoute.use("/clientes", ClientesRoute);
+    apiRoute.use("/conceptos", ConceptosRoute);
+
+
     
 
     //ruta padre

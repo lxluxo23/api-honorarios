@@ -6,6 +6,9 @@ var morgan = require('morgan');
 const clc = require('cli-color');
 const figlet = require('figlet');
 const db = container.resolve("db");
+var os = require("os");
+var nucleos = os.cpus().length;
+var MemoriaDisponible = ((os.freemem())/1048576);
 /*
     # 
     #   cluster
@@ -28,8 +31,9 @@ const morganMiddleware = morgan(function(tokens, req, res) {
 });
 
 if (cluster.isMaster) {
-    var nucleos = require('os').cpus().length;
+   
     console.log(clc.bgGreen('Iniciando Cluster | nucleos disponibles: ' + nucleos + ' nucleos | pid maestro: ' + process.pid));
+    console.log(clc.green("Memoria disponible: "),clc.bgRed(MemoriaDisponible,'MB de ram') )
     console.log(clc.greenBright.bold("Aplicacion corriendo en el puerto ", config.PORT));
     db.sequelize.sync({ alter: true, force: false, logging: false })
     .then(() => {

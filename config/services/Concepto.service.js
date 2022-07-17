@@ -1,22 +1,22 @@
-class TipoPagoService {
+class ConceptoService {
 
     constructor({ db }) {
         this.db = db;
     }
     async ObtenerTodos() {
 
-        return this.db.tipopago.findAll({
+        return this.db.conceptos.findAll({
             raw: true,
             nest: true,
         });
     }
     async Crear(entity) {
 
-        return await this.db.tipopago.create(entity);
+        return await this.db.conceptos.create(entity);
 
     }
     async Eliminar(id) {
-        return this.db.tipopago.destroy({
+        return this.db.conceptos.destroy({
             where: {
                 id: id
             }
@@ -26,6 +26,6 @@ class TipoPagoService {
     }
 }
 
-module.exports = TipoPagoService
+module.exports = ConceptoService
 
 

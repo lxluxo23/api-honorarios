@@ -1,4 +1,6 @@
 module.exports ={
 
-    TipoPagoService : require ('./TipoPago.service')
+    TipoPagoService : require ('./TipoPago.service'),
+    ClienteService:require('./Cliente.service'),
+    ConceptoService:require('./Concepto.service')
 }

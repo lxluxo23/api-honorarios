@@ -5,5 +5,7 @@ module.exports = function({ TipoPagoController }) {
 
     router.get("/", TipoPagoController.TraerTodos.bind(TipoPagoController));
     router.post("/", TipoPagoController.Crear.bind(TipoPagoController));
+    router.delete("/:id", TipoPagoController.Eliminar.bind(TipoPagoController));
+
     return router;
 };
