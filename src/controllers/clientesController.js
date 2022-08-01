@@ -25,6 +25,7 @@ class ClientesController {
 
         try {
             const { id } = req.params;
+             console.log(id)
             await this.servicio.Eliminar(id);
             return res.status(200).send({ success: true, msg: `ELIMINADO EXITOSAMENTE` });
 
