@@ -10,9 +10,21 @@ class ClienteService {
             nest: true,
         });
     }
+    async BuscarID(id) {
+
+        return this.db.clientes.findOne({
+            where: {
+                id: id
+            },
+            raw: true,
+            nest: true,
+        }).catch((err) => {
+            throw new Error(err.errors[0].message || err.message);
+        });
+    }
     async Crear(entity) {
 
-        return await this.db.clientes.create(entity);
+        return await this.db.clientes.create(entity)
 
     }
     async Eliminar(id) {
