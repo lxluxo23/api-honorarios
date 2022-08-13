@@ -49,7 +49,9 @@ if (cluster.isMaster) {
         console.error((clc.bold.red(err)));
 
     });
-    for (var i = 0; i < nucleos; i++) {
+
+    //el segundo parametro van la cantidad de nucleos 
+    for (var i = 0; i < 4; i++) {
         cluster.fork();
     }
     cluster.on('online', function(worker) {
