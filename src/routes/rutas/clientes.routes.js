@@ -7,6 +7,7 @@ module.exports = function({ ClientesController }) {
     router.get("/buscar/:id", ClientesController.BuscarID.bind(ClientesController));
     router.post("/", ClientesController.Crear.bind(ClientesController));
     router.delete("/:id", ClientesController.Eliminar.bind(ClientesController));
+    router.put("/actualizar/:id", ClientesController.Modificar.bind(ClientesController));
 
     return router;
 };

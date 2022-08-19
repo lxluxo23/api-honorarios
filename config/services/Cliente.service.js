@@ -36,6 +36,15 @@ class ClienteService {
             throw new Error(err.errors[0].message || err.message);
         });
     }
+    async Actualizar(id,body) {
+        return await this.db.clientes.update(body, {
+            where: {
+                id: id
+            }
+        }).catch((err) => {
+            throw new Error(err.errors[0].message || err.message);
+        });
+    }
 }
 
 module.exports = ClienteService
