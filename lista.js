@@ -1,4 +1,4 @@
-const inquirer = require('inquirer');
+const inquirer = require('inquirer')
 
 inquirer
   .prompt([
@@ -6,9 +6,9 @@ inquirer
       type: 'list',
       name: 'entorno',
       message: 'que entorno usar ?',
-      choices: ['development', 'production'],
-    },
+      choices: ['development', 'production']
+    }
   ])
   .then(res => {
-    console.info('Se a seleccionado el entorno de ',res.entorno);
-  });
+    console.info('Se a seleccionado el entorno de ', res.entorno)
+  })

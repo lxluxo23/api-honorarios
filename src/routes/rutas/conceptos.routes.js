@@ -1,11 +1,11 @@
-const { Router } = require("express");
+const { Router } = require('express')
 
-module.exports = function({ ConceptosController }) {
-    const router = Router();
+module.exports = function ({ ConceptosController }) {
+  const router = Router()
 
-    router.get("/", ConceptosController.TraerTodos.bind(ConceptosController));
-    router.post("/", ConceptosController.Crear.bind(ConceptosController));
-    router.delete("/:id", ConceptosController.Eliminar.bind(ConceptosController));
+  router.get('/', ConceptosController.TraerTodos.bind(ConceptosController))
+  router.post('/', ConceptosController.Crear.bind(ConceptosController))
+  router.delete('/:id', ConceptosController.Eliminar.bind(ConceptosController))
 
-    return router;
-};
+  return router
+}

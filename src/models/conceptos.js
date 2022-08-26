@@ -1,25 +1,24 @@
-"use strict";
+'use strict'
 module.exports = (sequelize, DataTypes) => {
   const conceptos = sequelize.define(
-    "conceptos",
+    'conceptos',
     {
-      id:{
-        type:DataTypes.INTEGER,
-        allowNull:false,
-        primaryKey:true,
-        autoIncrement:true
+      id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true
       },
-      nombre:{
-        type:DataTypes.STRING,
-        allowNull:false,
+      nombre: {
+        type: DataTypes.STRING,
+        allowNull: false
       }
     },
     {
-      tableName:"conceptos",
+      tableName: 'conceptos',
       timestamps: true
     }
-  );
+  )
 
-  return conceptos;
-};
-
+  return conceptos
+}

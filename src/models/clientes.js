@@ -1,7 +1,7 @@
-"use strict";
+'use strict'
 module.exports = (sequelize, DataTypes) => {
   const clientes = sequelize.define(
-    "clientes",
+    'clientes',
     {
       id: {
         type: DataTypes.INTEGER,
@@ -15,16 +15,14 @@ module.exports = (sequelize, DataTypes) => {
       rut: {
         type: DataTypes.STRING,
         allowNull: false
-      },
-      
+      }
+
     },
     {
-      tableName:"clientes",
+      tableName: 'clientes',
       timestamps: true
     }
-  );
-  
+  )
 
-  return clientes;
-};
-
+  return clientes
+}
