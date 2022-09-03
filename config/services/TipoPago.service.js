@@ -10,6 +10,18 @@ class TipoPagoService {
     })
   }
 
+  async BuscarID (id) {
+    return this.db.tipopago.findOne({
+      where: {
+        id
+      },
+      raw: true,
+      nest: true
+    }).catch((err) => {
+      throw new Error(err.errors[0].message || err.message)
+    })
+  }
+
   async Crear (entity) {
     return await this.db.tipopago.create(entity)
   }

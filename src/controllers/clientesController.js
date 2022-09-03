@@ -5,8 +5,17 @@ class ClientesController {
   }
 
   async TraerTodos (req, res) {
-    const datos = await this.servicio.ObtenerTodos()
-    return res.status(200).send(datos)
+    try {
+      const datos = await this.servicio.ObtenerTodos()
+      if (datos != undefined) {
+        return res.status(200).send(datos)
+      } else {
+        return res.status(500).send({ success: false, msg: 'Error, no hay datos' })
+      }
+    } catch (error) {
+      console.error(error)
+      return res.status(500).send({ success: false, msg: 'Error en el servidor' })
+    }
   }
 
   async BuscarID (req, res) {

@@ -1,16 +1,40 @@
+/* eslint-disable eqeqeq */
 class ConceptosController {
   constructor ({ ConceptoService }) {
     this.servicio = ConceptoService
   }
 
   async TraerTodos (req, res) {
-    const datos = await this.servicio.ObtenerTodos()
-    return res.status(200).send(datos)
+    try {
+      const datos = await this.servicio.ObtenerTodos()
+      if (datos != undefined && datos.length > 1) {
+        return res.status(200).send(datos)
+      } else {
+        return res.status(500).send({ success: false, msg: 'Error, no hay datos' })
+      }
+    } catch (error) {
+      console.error(error)
+      return res.status(500).send({ success: false, msg: 'Error en el servidor' })
+    }
+  }
+
+  async BuscarID (req, res) {
+    try {
+      const { id } = req.params
+      const datos = await this.servicio.BuscarID(id)
+      if (datos != undefined) {
+        return res.status(200).send(datos)
+      } else {
+        return res.status(500).send({ success: false, msg: 'Error, no hay datos' })
+      }
+    } catch (error) {
+      console.error(error)
+      return res.status(500).send({ success: false, msg: 'Error en el servidor' })
+    }
   }
 
   async Crear (req, res) {
     const body = req.body
-
     console.table(body)
     await this.servicio.Crear(body).then(() => {
       return res.status(200).send({ success: true, msg: 'Creado Exitosamente ' })
@@ -18,6 +42,20 @@ class ConceptosController {
       console.error(err)
       return res.status(500).send({ success: false, msg: 'Error, no es posible guardar los datos' })
     })
+  }
+
+  async Modificar (req, res) {
+    try {
+      const { id } = req.params
+      const body = req.body
+      console.log(body)
+      console.log(id)
+      await this.servicio.Actualizar(id, body)
+      return res.status(200).send({ success: true, msg: 'Actualizado correctamente' })
+    } catch (error) {
+      console.error(error)
+      return res.status(500).send({ success: false, msg: error.message })
+    }
   }
 
   async Eliminar (req, res) {
