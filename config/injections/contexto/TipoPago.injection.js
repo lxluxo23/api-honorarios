@@ -1,7 +1,7 @@
 const { asClass, asFunction } = require('awilix')
 const { TipoPagoController } = require('../../../src/controllers')
 const { TipoPagoRoute } = require('../../../src/routes/rutas')
-const { TipoPagoService } = require('../../services')
+const { TipoPagoService } = require('../../../src/services/')
 module.exports = (container) => {
   container.register({
     TipoPagoRoute: asFunction(TipoPagoRoute).singleton(),

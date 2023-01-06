@@ -13,12 +13,6 @@ const MemoriaDisponible = ((os.freemem()) / 1048576)
 
 const { NODE_ENV } = process.env
 let entorno = false
-/*
-    #
-    #   cluster
-    #
-
-*/
 
 const morganMiddleware = morgan(function (tokens, req, res) {
   return [
@@ -42,38 +36,18 @@ if (NODE_ENV === 'production' || NODE_ENV === 'development') {
   console.log('no hay enviroment')
 }
 
-// if (entorno == false) {
-//     async function preguntas(){
-//         respuesta = await  inquirer.prompt([
-//             {
-//                 type: "list",
-//                 name: "entorno",
-//                 message: "que entorno usar ?",
-//                 choices: ["development", "production"],
-//             },
-//         ])
-//         if (respuesta.entorno != undefined){
-//             console.log(respuesta.entorno)
-//             process.env.NODE_ENV = respuesta.entorno
-//             entorno = true
-//         }
-//     }
-
-//     preguntas()
-
-// }
 if (entorno === true) {
   const container = require('./config/injections/container')
   const config = container.resolve('config')
   const Routes = container.resolve('router')
   const db = container.resolve('db')
-  console.log(clc.green('Memoria disponible: '), clc.bgRed(MemoriaDisponible, 'MB de ram'))
-  console.log(clc.greenBright.bold('Aplicacion corriendo en el puerto ', config.PORT))
+  console.log(clc.green('Memoria disponible: '), clc.bgRed(MemoriaDisponible, 'MB de RAM'))
   const animacion = chalkAnimation.karaoke('SINCRONIZANDO BASE DE DATOS.')
   animacion.start()
   db.sequelize.sync({ alter: true, force: false, logging: false })
     .then(() => {
       console.clear()
+      console.log(clc.greenBright.bold('Aplicacion corriendo en el puerto ', config.PORT))
       console.log(clc.greenBright(figlet.textSync('Tablas sincronizadas', {
         horizontalLayout: 'default',
         verticalLayout: 'default',

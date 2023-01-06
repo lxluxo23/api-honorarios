@@ -6,7 +6,9 @@
     "scripts": {
         "dev": "nodemon --no-stdin index.js",
         "lint": "standard --fix",
-        "prod": "set NODE_ENV=production & nodemon --no-stdin index.js"
+        "prod": "set NODE_ENV=production & nodemon --no-stdin index.js",
+        "datos": "npx sequelize-cli db:seed:all",
+        "borrardatos": "npx sequelize-cli db:seed:undo"
     },
     "author": "luis cespedes",
     "license": "ISC",
