@@ -8,7 +8,8 @@ class HonorariosService {
     return this.db.honorarios.findAll({
       include: [
         { model: this.db.clientes, as: 'Cliente' },
-        { model: this.db.conceptos, as: 'Concepto' }
+        { model: this.db.conceptos, as: 'Concepto' },
+        { model: this.db.tipopago, as: 'Tipopago' }
       ],
       raw: true,
       nest: true

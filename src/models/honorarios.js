@@ -48,6 +48,10 @@ module.exports = (sequelize, DataTypes) => {
       numero_comprobante: {
         type: DataTypes.INTEGER,
         allowNull: true
+      },
+      id_tipo_pago: {
+        type: DataTypes.INTEGER,
+        allowNull: true
       }
     },
     {
@@ -66,6 +70,11 @@ module.exports = (sequelize, DataTypes) => {
       uniqueKey: 'fk_conceptos',
       foreignKey: 'id_concepto',
       as: 'Concepto'
+    })
+    honorarios.belongsTo(models.tipopago, {
+      uniqueKey: 'fk_tipopago',
+      foreignKey: 'id_tipo_pago',
+      as: 'Tipopago'
     })
   }
   return honorarios

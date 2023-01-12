@@ -6,19 +6,27 @@ module.exports = {
     await queryInterface.bulkInsert('tipopago', [
       {
         id: 1,
-        nombre: 'Efectivo'
+        nombre: 'Efectivo',
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         id: 2,
-        nombre: 'Debito'
+        nombre: 'Transferencia',
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         id: 3,
-        nombre: 'Credito'
+        nombre: 'Cheque',
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         id: 4,
-        nombre: 'Cheque'
+        nombre: 'Debito',
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ], {})
   },

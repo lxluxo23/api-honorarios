@@ -6,38 +6,67 @@ module.exports = {
     await queryInterface.bulkInsert('conceptos', [
       {
         id: 1,
-        nombre: 'Imposiciones'
+        nombre: 'Imposiciones',
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         id: 2,
-        nombre: 'Pago en efectivo'
+        nombre: 'Pago en efectivo',
+        createdAt: new Date(),
+        updatedAt: new Date()
 
       },
       {
         id: 3,
-        nombre: 'Pago'
+        nombre: 'Pago',
+        createdAt: new Date(),
+        updatedAt: new Date()
 
       },
       {
         id: 4,
-        nombre: 'Timbraje'
+        nombre: 'Certificado digital',
+        createdAt: new Date(),
+        updatedAt: new Date()
 
       },
       {
         id: 5,
-        nombre: 'rents'
+        nombre: 'renta',
+        createdAt: new Date(),
+        updatedAt: new Date()
 
       },
       {
         id: 6,
-        nombre: 'iva'
+        nombre: 'iva',
+        createdAt: new Date(),
+        updatedAt: new Date()
 
       },
       {
         id: 7,
-        nombre: 'deuda'
+        nombre: 'honorario contable',
+        createdAt: new Date(),
+        updatedAt: new Date()
+
+      },
+      {
+        id: 8,
+        nombre: 'honorario imposiciones',
+        createdAt: new Date(),
+        updatedAt: new Date()
+
+      },
+      {
+        id: 9,
+        nombre: 'Otros',
+        createdAt: new Date(),
+        updatedAt: new Date()
 
       }
+
     ], {})
   },
 
