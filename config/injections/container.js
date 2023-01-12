@@ -20,5 +20,5 @@ container
 container = require('./contexto/TipoPago.injection')(container)
 container = require('./contexto/Clientes.injection')(container)
 container = require('./contexto/Conceptos.injection')(container)
-
+container = require('./contexto/Honorarios.injection')(container)
 module.exports = container

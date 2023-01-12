@@ -9,6 +9,14 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true
       },
+      id_concepto: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      id_cliente: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
       numero_boleta: {
         type: DataTypes.INTEGER,
         allowNull: false
@@ -24,10 +32,6 @@ module.exports = (sequelize, DataTypes) => {
       fecha_anulacion: {
         type: DataTypes.DATEONLY,
         allowNull: true
-      },
-      id_cliente: {
-        type: DataTypes.INTEGER,
-        allowNull: false
       },
       total: {
         type: DataTypes.INTEGER,
@@ -52,5 +56,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   )
 
+  honorarios.associate = function (models) {
+    honorarios.belongsTo(models.clientes, {
+      uniqueKey: 'fk_clientes',
+      foreignKey: 'id_cliente',
+      as: 'Cliente'
+    })
+    honorarios.belongsTo(models.conceptos, {
+      uniqueKey: 'fk_conceptos',
+      foreignKey: 'id_concepto',
+      as: 'Concepto'
+    })
+  }
   return honorarios
 }
