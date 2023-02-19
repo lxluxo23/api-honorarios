@@ -40,20 +40,25 @@ class HonorariosService {
   }
 
   async ObtenerPorFecha (fecha) {
-    return this.db.honorarios.findAll({
-      include: [
-        { model: this.db.clientes, as: 'Cliente' },
-        { model: this.db.conceptos, as: 'Concepto' }
-      ],
-      where: {
-        createdAt: {
-          [Op.between]: [
-            fecha,
-            fecha
-          ]
+    try {
+      return this.db.honorarios.findAll({
+        include: [
+          { model: this.db.clientes, as: 'Cliente' },
+          { model: this.db.conceptos, as: 'Concepto' }
+        ],
+        where: {
+          createdAt: {
+            [Op.between]: [
+              new Date(fecha + 'T00:00:00.000Z'),
+              new Date(fecha + 'T23:59:59.999Z')
+            ]
+          }
         }
-      }
-    })
+      })
+    } catch (error) {
+      console.error(error)
+      throw new Error('Error al obtener los datos por fecha')
+    }
   }
 
   async BuscarID (id) {

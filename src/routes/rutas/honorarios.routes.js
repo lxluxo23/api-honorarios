@@ -10,6 +10,6 @@ module.exports = function ({ HonorariosController }) {
   router.put('/actualizar/:id', HonorariosController.Modificar.bind(HonorariosController))
   router.get('/mes/:id', HonorariosController.BuscarMes.bind(HonorariosController))
   router.get('/usuario/:id', HonorariosController.BuscarUsuario.bind(HonorariosController))
-  router.get('/fecha/:fecha', HonorariosController.BuscarPorfecha.bind(HonorariosController))
+  router.get('/fecha/', HonorariosController.BuscarPorfecha.bind(HonorariosController))
   return router
 }

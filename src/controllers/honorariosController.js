@@ -1,15 +1,36 @@
 /* eslint-disable eqeqeq */
 
 class HonorariosController {
-  constructor ({ HonorariosService }) {
+  constructor({ HonorariosService }) {
     this.servicio = HonorariosService
   }
 
-  async TraerTodos (req, res) {
+  async TraerTodos(req, res) {
     try {
       const datos = await this.servicio.ObtenerTodos()
       if (datos != undefined && datos.length > 0) {
-        return res.status(200).send({ data: datos })
+        const totales = {
+          total: 0,
+          efectivo: 0,
+          transferencia: 0,
+          cheque: 0
+        }
+
+        const nuevosDatos = datos.map(item => {
+          totales.total += item.total
+          if (item.id_tipo_pago === 1) {
+            totales.efectivo += item.total
+          }
+          if (item.id_tipo_pago === 2) {
+            totales.transferencia += item.total
+          }
+          if (item.id_tipo_pago === 3) {
+            totales.cheque += item.total
+          }
+          return item
+        })
+
+        return res.status(200).send({ data: nuevosDatos, totales })
       } else {
         return res.status(500).send({ success: false, msg: 'Error, no hay datos' })
       }
@@ -19,7 +40,7 @@ class HonorariosController {
     }
   }
 
-  async BuscarID (req, res) {
+  async BuscarID(req, res) {
     try {
       const { id } = req.params
       const datos = await this.servicio.BuscarID(id)
@@ -34,9 +55,9 @@ class HonorariosController {
     }
   }
 
-  async BuscarMes (req, res) {
+  async BuscarMes(req, res) {
     try {
-      const { id } = req.params
+      const { id } = req.params // id representa el numero del mes
       const datos = await this.servicio.ObtenerPorMes(id)
       if (datos != undefined && datos.length > 0) {
         let total = 0
@@ -55,28 +76,24 @@ class HonorariosController {
     }
   }
 
-  async BuscarPorfecha (req, res) {
+  async BuscarPorfecha(req, res) {
     try {
-      const { fecha } = req.params
-      console.log('la fecha culia ' + fecha)
-      // const datos = await this.servicio.ObtenerPorFecha(fecha)
-      // if (datos != undefined && datos.length > 0) {
-      //   let total = 0
-      //   datos.forEach(function (item) {
-      //     total += item.total
-      //   })
-
-      //   return res.status(200).send({ data: datos, total })
-      // } else {
-      //   return res.status(500).send({ success: false, msg: 'Error, no hay datos' })
-      // }
+      const fecha = req.query.fecha
+      const parametros = req.query
+      console.log(parametros)
+      const datos = await this.servicio.ObtenerPorFecha(fecha)
+      if (datos != undefined && datos.length > 0) {
+        return res.status(200).send({ data: datos })
+      } else {
+        return res.status(500).send({ success: false, msg: 'Error, no hay datos' })
+      }
     } catch (error) {
       console.error(error)
       return res.status(500).send({ success: false, msg: 'Error en el servidor' })
     }
   }
 
-  async BuscarUsuario (req, res) {
+  async BuscarUsuario(req, res) {
     try {
       const { id } = req.params
       const datos = await this.servicio.BuscarUsuario(id)
@@ -91,7 +108,7 @@ class HonorariosController {
     }
   }
 
-  async Modificar (req, res) {
+  async Modificar(req, res) {
     try {
       const { id } = req.params
       const body = req.body
@@ -105,7 +122,7 @@ class HonorariosController {
     }
   }
 
-  async Crear (req, res) {
+  async Crear(req, res) {
     const body = req.body
     await this.servicio.Crear(body).then(() => {
       return res.status(200).send({ success: true, msg: 'Creado Exitosamente ' })
@@ -115,7 +132,7 @@ class HonorariosController {
     })
   }
 
-  async Eliminar (req, res) {
+  async Eliminar(req, res) {
     try {
       const { id } = req.params
       await this.servicio.Eliminar(id)
